@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Academia" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/WSAcademiaSeguros.Entities" />
+      <xs:element name="IsOnline">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="IsOnlineResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="IsOnlineResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LogIn">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LogInResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="LogInResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserData">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserDataResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WSAcademiaSeguros.Entities" minOccurs="0" name="GetUserDataResult" nillable="true" type="q1:User" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetLastOperation">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetLastOperationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WSAcademiaSeguros.Entities" minOccurs="0" name="GetLastOperationResult" nillable="true" type="q2:ArrayOfOperation" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserPolicies">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetUserPoliciesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WSAcademiaSeguros.Entities" minOccurs="0" name="GetUserPoliciesResult" nillable="true" type="q3:ArrayOfPolicy" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPolicyDetail">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="policyNumber" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPolicyDetailResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WSAcademiaSeguros.Entities" minOccurs="0" name="GetPolicyDetailResult" nillable="true" type="q4:PolicyDetail" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDocumentContent">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="ID" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDocumentContentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="GetDocumentContentResult" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveNewFoto">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="photo" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveNewFotoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="SaveNewFotoResult" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WSAcademiaSeguros.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WSAcademiaSeguros.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="User">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AddressNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="County" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DocumentNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DocumentType" type="tns:EnumUserDocumentType" />
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Neighborhood" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Nif" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Photo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Province" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" type="tns:EnumUserTitle" />
+          <xs:element minOccurs="0" name="Type" type="tns:EnumUserType" />
+          <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="User" nillable="true" type="tns:User" />
+      <xs:simpleType name="EnumUserDocumentType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotDefinied" />
+          <xs:enumeration value="BI" />
+          <xs:enumeration value="CC" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="EnumUserDocumentType" nillable="true" type="tns:EnumUserDocumentType" />
+      <xs:simpleType name="EnumUserTitle">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotDefinied" />
+          <xs:enumeration value="Eng" />
+          <xs:enumeration value="Sr" />
+          <xs:enumeration value="Sra" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="EnumUserTitle" nillable="true" type="tns:EnumUserTitle" />
+      <xs:simpleType name="EnumUserType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotDefinied" />
+          <xs:enumeration value="Particular" />
+          <xs:enumeration value="Company" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="EnumUserType" nillable="true" type="tns:EnumUserType" />
+      <xs:complexType name="ArrayOfOperation">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Operation" nillable="true" type="tns:Operation" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfOperation" nillable="true" type="tns:ArrayOfOperation" />
+      <xs:complexType name="Operation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DtOperation" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OperationType" type="tns:EnumOperationType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Operation" nillable="true" type="tns:Operation" />
+      <xs:simpleType name="EnumOperationType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotDefined" />
+          <xs:enumeration value="Auto" />
+          <xs:enumeration value="Travel" />
+          <xs:enumeration value="Infomration" />
+          <xs:enumeration value="Message" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="EnumOperationType" nillable="true" type="tns:EnumOperationType" />
+      <xs:complexType name="ArrayOfPolicy">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Policy" nillable="true" type="tns:Policy" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPolicy" nillable="true" type="tns:ArrayOfPolicy" />
+      <xs:complexType name="Policy">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="State" type="tns:EnumPolicyState" />
+          <xs:element minOccurs="0" name="Type" type="tns:EnumPolicyType" />
+          <xs:element minOccurs="0" name="Value" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Policy" nillable="true" type="tns:Policy" />
+      <xs:simpleType name="EnumPolicyState">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotDefined" />
+          <xs:enumeration value="Simulated" />
+          <xs:enumeration value="WaitPayment" />
+          <xs:enumeration value="Active" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="EnumPolicyState" nillable="true" type="tns:EnumPolicyState" />
+      <xs:simpleType name="EnumPolicyType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NotDefined" />
+          <xs:enumeration value="Auto" />
+          <xs:enumeration value="Travel" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="EnumPolicyType" nillable="true" type="tns:EnumPolicyType" />
+      <xs:complexType name="PolicyDetail">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Policy">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="Conditions" nillable="true" type="tns:PolicyConditions" />
+              <xs:element minOccurs="0" name="GeneralData" nillable="true" type="tns:PolicyGeneralData" />
+              <xs:element minOccurs="0" name="ListDocuments" nillable="true" type="tns:ArrayOfPolicyDocument" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="PolicyDetail" nillable="true" type="tns:PolicyDetail" />
+      <xs:complexType name="PolicyConditions">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ListPolicyBonus" nillable="true" type="tns:ArrayOfPolicyBonus" />
+          <xs:element minOccurs="0" name="ListPolicyCoverage" nillable="true" type="tns:ArrayOfPolicyCoverage" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PolicyConditions" nillable="true" type="tns:PolicyConditions" />
+      <xs:complexType name="ArrayOfPolicyBonus">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PolicyBonus" nillable="true" type="tns:PolicyBonus" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPolicyBonus" nillable="true" type="tns:ArrayOfPolicyBonus" />
+      <xs:complexType name="PolicyBonus">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Bonus" type="xs:int" />
+          <xs:element minOccurs="0" name="NumberYears" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PolicyBonus" nillable="true" type="tns:PolicyBonus" />
+      <xs:complexType name="ArrayOfPolicyCoverage">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PolicyCoverage" nillable="true" type="tns:PolicyCoverage" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPolicyCoverage" nillable="true" type="tns:ArrayOfPolicyCoverage" />
+      <xs:complexType name="PolicyCoverage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CoverageType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InsuredValue" type="xs:double" />
+          <xs:element minOccurs="0" name="Value" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PolicyCoverage" nillable="true" type="tns:PolicyCoverage" />
+      <xs:complexType name="PolicyGeneralData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BonusInsurance" type="xs:double" />
+          <xs:element minOccurs="0" name="Branch" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BusinessUnit" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ClientNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Concurrency" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Fragmentation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InitDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Intermediate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ListVehicles" nillable="true" type="tns:ArrayOfPolicyVehicle" />
+          <xs:element minOccurs="0" name="LocalRisk" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PaymentMode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Product" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TotalInsurance" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PolicyGeneralData" nillable="true" type="tns:PolicyGeneralData" />
+      <xs:complexType name="ArrayOfPolicyVehicle">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PolicyVehicle" nillable="true" type="tns:PolicyVehicle" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPolicyVehicle" nillable="true" type="tns:ArrayOfPolicyVehicle" />
+      <xs:complexType name="PolicyVehicle">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Brand" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CC" type="xs:int" />
+          <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NSeat" type="xs:unsignedInt" />
+          <xs:element minOccurs="0" name="Registration" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Weight" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PolicyVehicle" nillable="true" type="tns:PolicyVehicle" />
+      <xs:complexType name="ArrayOfPolicyDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PolicyDocument" nillable="true" type="tns:PolicyDocument" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPolicyDocument" nillable="true" type="tns:ArrayOfPolicyDocument" />
+      <xs:complexType name="PolicyDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Data" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DocumentType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PolicyDocument" nillable="true" type="tns:PolicyDocument" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IAcademia_IsOnline_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsOnline" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_IsOnline_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsOnlineResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_LogIn_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogIn" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_LogIn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogInResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_GetUserData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserData" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_GetUserData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_GetLastOperation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastOperation" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_GetLastOperation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastOperationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_GetUserPolicies_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserPolicies" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_GetUserPolicies_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserPoliciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_GetPolicyDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPolicyDetail" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_GetPolicyDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPolicyDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_GetDocumentContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentContent" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_GetDocumentContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_SaveNewFoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveNewFoto" />
+  </wsdl:message>
+  <wsdl:message name="IAcademia_SaveNewFoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveNewFotoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAcademia">
+    <wsdl:operation name="IsOnline">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcademia/IsOnline" message="tns:IAcademia_IsOnline_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcademia/IsOnlineResponse" message="tns:IAcademia_IsOnline_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogIn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcademia/LogIn" message="tns:IAcademia_LogIn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcademia/LogInResponse" message="tns:IAcademia_LogIn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcademia/GetUserData" message="tns:IAcademia_GetUserData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcademia/GetUserDataResponse" message="tns:IAcademia_GetUserData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastOperation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcademia/GetLastOperation" message="tns:IAcademia_GetLastOperation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcademia/GetLastOperationResponse" message="tns:IAcademia_GetLastOperation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPolicies">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcademia/GetUserPolicies" message="tns:IAcademia_GetUserPolicies_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcademia/GetUserPoliciesResponse" message="tns:IAcademia_GetUserPolicies_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPolicyDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcademia/GetPolicyDetail" message="tns:IAcademia_GetPolicyDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcademia/GetPolicyDetailResponse" message="tns:IAcademia_GetPolicyDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcademia/GetDocumentContent" message="tns:IAcademia_GetDocumentContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcademia/GetDocumentContentResponse" message="tns:IAcademia_GetDocumentContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveNewFoto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAcademia/SaveNewFoto" message="tns:IAcademia_SaveNewFoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAcademia/SaveNewFotoResponse" message="tns:IAcademia_SaveNewFoto_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAcademia" type="tns:IAcademia">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsOnline">
+      <soap:operation soapAction="http://tempuri.org/IAcademia/IsOnline" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogIn">
+      <soap:operation soapAction="http://tempuri.org/IAcademia/LogIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <soap:operation soapAction="http://tempuri.org/IAcademia/GetUserData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastOperation">
+      <soap:operation soapAction="http://tempuri.org/IAcademia/GetLastOperation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserPolicies">
+      <soap:operation soapAction="http://tempuri.org/IAcademia/GetUserPolicies" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPolicyDetail">
+      <soap:operation soapAction="http://tempuri.org/IAcademia/GetPolicyDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentContent">
+      <soap:operation soapAction="http://tempuri.org/IAcademia/GetDocumentContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveNewFoto">
+      <soap:operation soapAction="http://tempuri.org/IAcademia/SaveNewFoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Academia">
+    <wsdl:port name="BasicHttpBinding_IAcademia" binding="tns:BasicHttpBinding_IAcademia">
+      <soap:address location="http://academianet.itsector.local/Academia.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
